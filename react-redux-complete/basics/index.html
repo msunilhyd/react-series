@@ -22,18 +22,42 @@
         class App extends React.Component {
             
             state = {
-                name: 'Ryu',
-                age : 34
-            }
+                name : 'sunil',
+                age : '27'
+        }
 
+
+        handleClick = (e) => {
+            // console.log(e.target);
+            this.setState(
+                {
+                    name:'Yoshi',
+                    age : 37
+                }
+            );
+       console.log(this.state);
+        }
+
+        handleMouseOver = (e) => {
+            console.log(e.target, e.pageX);
+        }
+
+        handleCopy = (e) => {
+            console.log('Try being original for once');    
+        }
+            
             render() {
                 return (
                     <div className="app-content">
                         <h1>
                             Hey, Ninjas.
                         </h1>
-                        <p> My name is : { this.state.name }</p>
+                        <p>{ Math.random() }</p>
+                        <p> Hello, My name is { this.state.name } </p>
                         <p> My age is : { this.state.age } </p>
+                        <button onClick={ this.handleClick}> Click Me </button>
+                        <button onMouseOver= {this.handleMouseOver}>Hover me </button>
+                        <p onCopy= { this.handleCopy}> What you think, you become !</p>
                     </div>
                 )
             }
