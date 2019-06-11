@@ -3,14 +3,24 @@ import { connect } from 'react-redux'
 
 class Post extends Component {
 
-    render() {
-        console.log('this.props is : ' + this.props);
-        console.log('this.props.post is : ' + this.props.post);
 
+    handleClick = () => {
+        this.props.deletePost(this.props.post.id);
+        this.props.history.push('/');
+    }
+
+    render() {
+
+        console.log(this.props);
         const post = this.props.post ? (
             <div className="post">
                 <h4 className="center">{this.props.post.title}</h4>
                 <p>{this.props.post.body}</p>
+                <div className="center">
+                    <button className="btn grey" onClick={this.handleClick}>
+                        Delete Post
+                    </button>
+                </div>
             </div>
         ) : (
                 <div className="center">Loading ...</div>
@@ -26,8 +36,16 @@ class Post extends Component {
 const mapStateToProps = (state, ownProps) => {
     let id = ownProps.match.params.post_id;
     return {
-        post: state.posts.find(post => parseInt(post.id) == id)
+        post: state.posts.find(post => parseInt(post.id, 10) == id)
     }
 }
 
-export default connect(mapStateToProps)(Post)
+
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        deletePost: (id) => { dispatch({ type: 'DELETE_POST', id: id }) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post)
