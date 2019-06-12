@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deletePost } from '../actions/postActions'
+import { deletePost, addPost } from '../actions/postActions'
 
 class Post extends Component {
 
 
     handleClick = () => {
         this.props.deletePost(this.props.post.id);
+        this.props.history.push('/');
+    }
+
+    handleClickAddPost = () => {
+        this.props.addPost(this.props.post);
         this.props.history.push('/');
     }
 
@@ -20,6 +25,9 @@ class Post extends Component {
                 <div className="center">
                     <button className="btn grey" onClick={this.handleClick}>
                         Delete Post
+                    </button>
+                    <button className="btn grey" onClick={this.handleClickAddPost}>
+                        Add Post
                     </button>
                 </div>
             </div>
@@ -43,9 +51,9 @@ const mapStateToProps = (state, ownProps) => {
 
 
 const mapDispatchToProps = (dispatch) => {
-
     return {
-        deletePost: (id) => { dispatch(deletePost(id)) }
+        deletePost: (id) => { dispatch(deletePost(id)) },
+        addPost: (post) => { dispatch(addPost(post)) }
     }
 }
 
