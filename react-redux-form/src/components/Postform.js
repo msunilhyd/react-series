@@ -38,6 +38,7 @@ class Postform extends Component {
             .then(data => console.log(data))
     }
     render() {
+
         return (
             <div>
                 <h1>Add Post</h1>
