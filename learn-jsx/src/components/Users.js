@@ -1,11 +1,11 @@
 
 import React, { Component } from 'react';
-
+import User from './Users';
 
 class Users extends Component {
     render() {
         return (
-            <div className="myClass">This is the User class Component</div>
+            <User />
         )
     }
 }
