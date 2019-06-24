@@ -5,7 +5,11 @@ import User from './Users';
 class Users extends Component {
     render() {
         return (
-            <User />
+            <div>
+                <User John />
+                <User Peter />
+                <User Jill />
+            </div>
         )
     }
 }
